@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Device Servicing</title>
+    <link rel="stylesheet" href="/css/mystyles.css">
+    <script src="bootstrap.js"></script>
+    <!-- <link rel="stylesheet" href="bootstrap.css"> -->
+    <link rel="stylesheet" href="/css/bootstrap.css">
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+    <script>
+      function name_val(){
+        var name = document.getElementById("name").value;
+        if (/(?=.*[0-9])/.test(name)){
+          document.getElementById('name_val_str').innerText="Name contains number(s)";
+          return false;
+        }else{
+          document.getElementById('name_val_str').innerText="" 
+        }
+      }  
+
+
+      // password should have atleast one numeric + one digit + one lowercase + one uppercase
+      function checkpass(){
+      var password = document.getElementById("pass").value;
+      var regex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.{8,})/;
+      var result_str = document.getElementById("pass_streng");
+
+      // document.getElementById("pass_streng").textContent="Enter a valid password";
+
+      if (password==""){
+        result_str.innerText="";
+      }
+
+      if (!/(?=.*[0-9])/.test(password)){
+        result_str.innerText="Password missing number ";
+        return false;
+      }
+
+      if (!/(?=.*[a-z])/.test(password)){
+        result_str.innerText="Password missing lowercase ";
+        return false;
+      }
+
+      if (!/(?=.*[A-Z])/.test(password)){
+        result_str.innerText="Password missing uppercase ";
+        return false;
+      }
+
+      if (!/(?=.{8,})/.test(password)){
+        result_str.innerText="Password must have atleast 8 chracters ";
+        return false;
+      }
+
+      if (regex.test(password)) {
+        result_str.innerHTML="<span style='color: green;'> Valid</span>";
+        return true;
+      } else {
+        result_str.innerText="Invalid password";
+      }      
+    }
+    function confirmpass(){
+      var password = document.getElementById("pass").value;
+      var conf_password = document.getElementById("pass_conf").value;
+      if (password == conf_password && password!=""){
+        document.getElementById("confpass_streng").innerHTML="<span style='color: green;'>Correct!</span>";
+        return true;
+      }
+      else{
+        document.getElementById("confpass_streng").innerHTML="<span style='color: red;'>Incorrect</span>";
+        return false;
+      }
+
+    }
+
+    function validate() {
+  // Call checkpass() and confirmpass() to validate password
+  var passValid = checkpass();
+  var confirmValid = confirmpass();
+
+  if (passValid && confirmValid) {
+    return true;  // Allow form submission
+  } else {
+    alert("Passwords didn't match or are invalid.");
+    return false;  // Block form submission
+  }
+}
+
+//     function validate(){
+//       // var email = document.getElementById("email").value;
+//       // var password = document.getElementById("pass").value;
+//       // var conf_password = document.getElementById("pass_conf").value;
+//       // if (email!="" && confirmpass()==false && checkpass()==false){
+//       //   return true;
+//       // }
+//       // return false;
+//       var pass_crtns = document.getElementById("pass_streng").innerText.trim();
+//       var passconf_crtns = document.getElementById("confpass_streng").innerText.trim();
+//       console.log(pass_crtns)
+//       console.log(passconf_crtns)
+//       if (pass_crtns=="Valid" && passconf_crtns=="Correct!"){
+//         return true;
+//       }
+//       else{
+//         alert("Passwords didn't match");
+//         return false;
+//       }
+//     }
+//     document.getElementById("signup_form").addEventListener("submit", function(event) {
+//     if (!validate()) {
+//         event.preventDefault();  // Prevent form submission if your function returns false
+//     }
+// });
+
+     </script>
+</head>
+<body>
+  <header class="container-fluid bg-primary p-3">
+    <h1 class="text-center text-white">Electro Electronics Services</h1>
+  </header>
+    <div class="container-fluid bg-light">
+        <nav class="navbar navbar-expand-sm navbar-light sticky-top">
+            <div class="container-fluid">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link text-primary" href="/home">Home</a>
+                </li>
+               <li class="nav-item">
+                  <a class="btn btn-outline-primary " href="/signin">Sign in </a>
+                </li> &nbsp;
+                <li class="nav-item">
+                  <a class="btn btn-primary text-white" href="/signup">Sign up</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-primary" href="/FAQ">FAQ</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+    </div><br><br>
+    <div class="container">
+    <form action="/signupform" method="POST" onsubmit="return validate();" id="signup_form">
+        <legend><h3>Sign-Up</h3></legend>
+        <label class="form-label" for="name">Name</label>
+        <input type="text" name="name" id="name" required onkeyup="name_val()"><span id='name_val_str'></span><br>
+
+        <label class="form-label" for="email">E-mail</label>
+        <input type="email" name="email" id="email" required><br>
+
+        <label class="form-label" for="pass">Password</label>
+        <input type="password" name="pass" id="pass" onkeyup="checkpass()" required>&nbsp;&nbsp;<span id="pass_streng"></span>
+        <br>
+        
+
+        <label class="form-label" for="pass_conf">Confirm Password</label>
+        <input type="password" name="pass_conf" id="pass_conf" onkeyup="confirmpass()" required>&nbsp;&nbsp;<span id="confpass_streng"></span>
+        <br>
+
+        <label for="address">Address (for delivery/service)</label><br>
+        <textarea name="address" rows="4" cols="50" style="resize: none;"></textarea><br><br>
+
+        <label for=""></label>
+
+        <!-- <button value="button" onclick="validate()"></button> -->
+        <button value="submit" class="btn btn-primary text-white">Sign up</button> <!---onclick="validate()"-->
+        <a href="/Client_Dashboard">signin</a>
+    </form>
+</div>
+<br><br>
+    <footer class="footer bg-primary text-white">
+      <div class="container">
+        <div>
+          <h4>Contact us</h4>
+          <span>Phone: <a class="text-decoration-none text-white" href="tel:9944502937">9944502937</a></span> <br>
+          <span>Mail: <a class="text-decoration-none text-white" href="mailto:gracegnanam@karunya.edu.in">gracegnanam@karunya.edu.in</a></span>
+          <br>
+          <div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d90932.86363574275!2d76.86471896150667!3d11.050424147963179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859a7e16eca91%3A0x928f2bfaef0acdc6!2sElectro%20hub!5e0!3m2!1sen!2sin!4v1728826136526!5m2!1sen!2sin" width="600" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+
+        <div>
+          <h4>About us</h4>
+          <div>
+          We serve you the highest quality of products and services, rising above the greatest expectations of any indiviual to cater the need for flawless services for your electronic devices and products.
+          </div><br>
+        </div>
+      </div>
+        
+      
+      
+    </footer>
+</body>
+</html>

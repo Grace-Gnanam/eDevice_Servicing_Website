@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Device Servicing</title>
+    <link rel="stylesheet" href="/css/mystyles.css">
+    <script src="/js/bootstrap.js"></script>
+    <script src="C:\Users\jgrac\Documents\Karunya\Semesters\Semester_5\Web_Tech\Internals_3_Project\bootstrap\js\bootstrap.js"></script>
+    <link rel="stylesheet" href="C:\Users\jgrac\Documents\Karunya\Semesters\Semester_5\Web_Tech\Internals_3_Project\bootstrap\css\bootstrap.css">
+
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+  <script>
+    function generate_quote(){
+      var Quantity = document.getElementById('qty').value;
+      // var Price = document.getElementById('Price').value;
+      var Price = 543;
+      var total_price = parseInt(Quantity)* parseInt(Price) || 0;
+
+      document.getElementById("total_amount").innerText="Total price: ₹"+ total_price;
+      return false; 
+    }
+    function default_date(){
+      document.getElementById('datePicker').valueAsDate = new Date();
+      document.getElementById("datePicker").disabled = true;
+    }
+  </script>
+  </head>
+<body>
+  <header class="container-fluid bg-primary p-3">
+    <h1 class="text-center text-white">Electro Electronics Services</h1>
+  </header>
+    <div class="container-fluid bg-light">
+        <nav class="navbar navbar-expand-sm navbar-light sticky-top justify-content-center">
+          <center>
+            <div class="container-fluid">
+              <ul class="navbar-nav">
+                <li class="nav-item fw-bold">
+                  <a class="nav-link text-primary text-decoration-underline" href="/Client_Dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item fw-bold">
+                  <a class="nav-link text-primary text-decoration-underline" href="/Client_Profile">Profile</a>
+                </li>
+                <li class="nav-item fw-bold">
+                  <a class="nav-link text-primary text-decoration-underline" href="/Service_request">Request Service</a>
+                </li>
+                <li class="nav-item fw-bold">
+                  <a class="nav-link text-primary text-decoration-underline" href="/Service_history">Service History</a>
+                </li>
+                <li class="nav-item fw-bold">
+                  <a class="nav-link text-primary text-decoration-underline" href="/home">Sign out</a>
+                </li>
+              </ul>
+            </div>
+          </center>
+          </nav>
+    </div>
+ <!-- Dashboard Content started -->
+  <div class="container">
+    <br>
+    <h2 class="text-center">Request Service</h2><br>
+    <div class="container">
+      <form action="/order" method="POST" >
+        <center>
+        <fieldset>
+          <label for="email" class="text-primary">Email:</label>
+          <input type="text" name="email" required> <br><br>
+
+          <label for="product_name" class="text-primary">Item name:</label>
+          <input type="text" name="product_name" required> <br><br>
+
+          <label for="product_code" class="text-primary">Product Code:</label>
+          <input type="text" name="product_code" required> <br><br>
+
+          <label for="qty" class="text-primary" id="qty">Quantity:</label>
+          <input type="number" name="quantity" required><br><br>
+
+          <label for="order_date" class="text-primary">Request Date:</label>
+          <input type="date" name="order_date" id="datePicker" onclick="default_date()" required> <br><br>
+
+          <label for="total_amount" id="total_amount" class="text-success fw-bold"></label><br><br>
+
+          <input type="button" onclick="return generate_quote()"  value="Generate Quote" class="btn btn-primary text-white">&nbsp; &nbsp;
+          <input type="submit" value="Request Now !" class="btn btn-primary text-white">
+        </fieldset>
+      </center>
+      </form>
+    </div>
+  </div>
+<!-- Dashboard Content finished -->
+<br><br>
+    <footer class="footer bg-primary text-white">
+      <div class="container-fluid">
+        <div>
+          <h4>Contact us</h4>
+          <span>Phone: <a class="text-decoration-none text-white" href="tel:9944502937">9944502937</a></span> <br>
+          <span>Mail: <a class="text-decoration-none text-white" href="mailto:gracegnanam@karunya.edu.in">gracegnanam@karunya.edu.in</a></span>
+          <br>
+          <div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d90932.86363574275!2d76.86471896150667!3d11.050424147963179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859a7e16eca91%3A0x928f2bfaef0acdc6!2sElectro%20hub!5e0!3m2!1sen!2sin!4v1728826136526!5m2!1sen!2sin" width="600" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+
+        <div>
+          <h4>About us</h4>
+          <div>
+          We serve you the highest quality of products and services, rising above the greatest expectations of any indiviual to cater the need for flawless services for your electronic devices and products.
+          </div><br>
+        </div>
+      </div>
+        
+      
+      
+    </footer>
+</body>
+</html>
